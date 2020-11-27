@@ -1,37 +1,28 @@
 import request from '@/utils/request'
 
-// 查询角色列表
-export function listRole(query) {
+export function listChristian(query) {
   return request({
-    url: '/role/page',
+    url: '/christian/page',
     method: 'get',
     params: query
   })
 }
 
-// 查询角色详细
-export function getRole(roleId) {
-  return request({
-    url: '/system/role/' + roleId,
-    method: 'get'
-  })
-}
-
 // 新增角色
-export function addRole(data) {
+export function addChristian(data) {
   return request({
-    url: '/role',
+    url: '/christian',
     method: 'post',
     data: data
   })
 }
 
 // 修改角色
-export function updateRole(data) {
+export function updateChristian(data) {
   return request({
-    url: '/system/role',
+    url: `/christian/${data.christianId}`,
     method: 'put',
-    data: data
+    data
   })
 }
 
@@ -44,7 +35,6 @@ export function dataScope(data) {
   })
 }
 
-// 角色状态修改
 export function changeRoleStatus(roleId, status) {
   const data = {
     roleId,
@@ -57,19 +47,31 @@ export function changeRoleStatus(roleId, status) {
   })
 }
 
-// 删除角色
-export function delRole(roleId) {
+export function delChristianId(christianId) {
   return request({
-    url: '/system/role/' + roleId,
+    url: `/christian/${christianId}`,
     method: 'delete'
   })
 }
 
-// 导出角色
-export function exportRole(query) {
+export function createQrcode(christianId) {
   return request({
-    url: '/system/role/export',
+    url: `/christian/qrcode/${christianId}`,
+    method: 'post'
+  })
+}
+
+export function downloadQrcode(christianId) {
+  return request({
+    url: `/christian/qrcode/download/${christianId}`,
+    method: 'get'
+  })
+}
+
+// 导出角色
+export function getChristianMeetingRecord(christianId) {
+  return request({
+    url: `/christian/${christianId}/meeting/page`,
     method: 'get',
-    params: query
   })
 }

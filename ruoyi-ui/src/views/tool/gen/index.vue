@@ -253,7 +253,7 @@ export default {
       }
       if(row.genType === "1") {
         genCode(row.tableName).then(response => {
-          this.msgSuccess("成功生成到自定义路径：" + row.genPath);
+          // this.msgSuccess("成功生成到自定义路径：" + row.genPath);
         });
       } else {
         downLoadZip("/tool/gen/batchGenCode?tables=" + tableNames, "ruoyi");
@@ -269,7 +269,7 @@ export default {
       }).then(function() {
           return synchDb(tableName);
       }).then(() => {
-          this.msgSuccess("同步成功");
+          // this.msgSuccess("同步成功");
       })
     },
     /** 打开导入表弹窗 */
@@ -312,7 +312,7 @@ export default {
           return delTable(tableIds);
       }).then(() => {
           this.getList();
-          this.msgSuccess("删除成功");
+          // this.msgSuccess("删除成功");
       })
     }
   }

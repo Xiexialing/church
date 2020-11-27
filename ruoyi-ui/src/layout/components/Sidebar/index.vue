@@ -11,9 +11,10 @@
                 :active-text-color="settings.theme"
                 :collapse-transition="false"
                 mode="vertical"
+                router
             >
                 <sidebar-item
-                    v-for="(route, index) in permission_routes"
+                    v-for="(route, index) in permission_routes.filter(item=>!item.hidden)"
                     :key="route.path  + index"
                     :item="route"
                     :base-path="route.path"
@@ -52,6 +53,9 @@ export default {
         isCollapse() {
             return !this.sidebar.opened;
         }
-    }
+    },
+  mounted() {
+      console.log(this.permission_routes)
+  }
 };
 </script>

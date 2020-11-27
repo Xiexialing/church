@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">若依后台管理系统</h3>
+      <h3 class="title">教堂管理系统</h3>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -20,7 +20,7 @@
       </el-form-item>
       <el-form-item prop="code">
         <el-input
-          v-model="loginForm.code"
+          v-model="loginForm.captcha"
           auto-complete="off"
           placeholder="验证码"
           style="width: 63%"
@@ -48,7 +48,6 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2020 ruoyi.vip All Rights Reserved.</span>
     </div>
   </div>
 </template>
@@ -68,7 +67,7 @@ export default {
         username: "admin",
         password: "admin123",
         rememberMe: false,
-        code: "",
+        captcha: "",
         uuid: ""
       },
       loginRules: {
@@ -78,7 +77,7 @@ export default {
         password: [
           { required: true, trigger: "blur", message: "密码不能为空" }
         ],
-        code: [{ required: true, trigger: "change", message: "验证码不能为空" }]
+        captcha: [{ required: true, trigger: "change", message: "验证码不能为空" }]
       },
       loading: false,
       redirect: undefined
@@ -99,19 +98,19 @@ export default {
   methods: {
     getCode() {
       getCodeImg().then(res => {
-        this.codeUrl = "data:image/gif;base64," + res.img;
-        this.loginForm.uuid = res.uuid;
+        this.codeUrl = "data:image/gif;base64," + res.data.img;
+        this.loginForm.uuid = res.data.uuid;
       });
     },
     getCookie() {
       const username = Cookies.get("username");
       const password = Cookies.get("password");
       const rememberMe = Cookies.get('rememberMe')
-      this.loginForm = {
+      Object.assign(this.loginForm, {
         username: username === undefined ? this.loginForm.username : username,
         password: password === undefined ? this.loginForm.password : decrypt(password),
         rememberMe: rememberMe === undefined ? false : Boolean(rememberMe)
-      };
+      })
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {

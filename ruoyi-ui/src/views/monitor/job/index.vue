@@ -387,7 +387,7 @@ export default {
         }).then(function() {
           return changeJobStatus(row.jobId, row.status);
         }).then(() => {
-          this.msgSuccess(text + "成功");
+          // this.msgSuccess(text + "成功");
         }).catch(function() {
           row.status = row.status === "0" ? "1" : "0";
         });
@@ -401,7 +401,7 @@ export default {
         }).then(function() {
           return runJob(row.jobId, row.jobGroup);
         }).then(() => {
-          this.msgSuccess("执行成功");
+          // this.msgSuccess("执行成功");
         })
     },
     /** 任务详细信息 */
@@ -437,13 +437,13 @@ export default {
         if (valid) {
           if (this.form.jobId != undefined) {
             updateJob(this.form).then(response => {
-              this.msgSuccess("修改成功");
+              // this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
             addJob(this.form).then(response => {
-              this.msgSuccess("新增成功");
+              // this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
             });
@@ -462,7 +462,7 @@ export default {
           return delJob(jobIds);
         }).then(() => {
           this.getList();
-          this.msgSuccess("删除成功");
+          // this.msgSuccess("删除成功");
         })
     },
     /** 导出按钮操作 */

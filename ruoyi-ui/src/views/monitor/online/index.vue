@@ -119,7 +119,7 @@ export default {
           return forceLogout(row.tokenId);
         }).then(() => {
           this.getList();
-          this.msgSuccess("强退成功");
+          // this.msgSuccess("强退成功");
         })
     }
   }

@@ -304,13 +304,13 @@ export default {
         if (valid) {
           if (this.form.dictCode != undefined) {
             updateData(this.form).then(response => {
-              this.msgSuccess("修改成功");
+              // this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
             addData(this.form).then(response => {
-              this.msgSuccess("新增成功");
+              // this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
             });
@@ -329,7 +329,7 @@ export default {
           return delData(dictCodes);
         }).then(() => {
           this.getList();
-          this.msgSuccess("删除成功");
+          // this.msgSuccess("删除成功");
         })
     },
     /** 导出按钮操作 */

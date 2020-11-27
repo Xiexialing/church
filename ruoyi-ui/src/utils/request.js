@@ -4,11 +4,14 @@ import store from '@/store'
 import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
 
+
+
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 // 创建axios实例
 const service = axios.create({
   // axios中请求配置有baseURL选项，表示请求URL公共部分
-  baseURL: process.env.VUE_APP_BASE_API,
+  // baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: '/admin/',
   // 超时
   timeout: 10000
 })
@@ -39,26 +42,15 @@ service.interceptors.response.use(res => {
         }
       ).then(() => {
         store.dispatch('LogOut').then(() => {
-          location.href = '/index';
+          location.href = '/';
         })
       })
-    } else if (code === 500) {
-      Message({
-        message: msg,
-        type: 'error'
-      })
-      return Promise.reject(new Error(msg))
-    } else if (code !== 200) {
-      Notification.error({
-        title: msg
-      })
-      return Promise.reject('error')
-    } else {
-      return res.data
     }
+    return res.data
   },
   error => {
     console.log('err' + error)
+    debugger
     let { message } = error;
     if (message == "Network Error") {
       message = "后端接口连接异常";

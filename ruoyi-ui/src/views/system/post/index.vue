@@ -108,7 +108,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -276,13 +276,13 @@ export default {
         if (valid) {
           if (this.form.postId != undefined) {
             updatePost(this.form).then(response => {
-              this.msgSuccess("修改成功");
+              // this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
             addPost(this.form).then(response => {
-              this.msgSuccess("新增成功");
+              // this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
             });
@@ -301,7 +301,7 @@ export default {
           return delPost(postIds);
         }).then(() => {
           this.getList();
-          this.msgSuccess("删除成功");
+          // this.msgSuccess("删除成功");
         })
     },
     /** 导出按钮操作 */

@@ -1,16 +1,16 @@
 import request from '@/utils/request'
 
 // 查询角色列表
-export function listRole(query) {
+export function listMeeting(query) {
   return request({
-    url: '/role/page',
+    url: '/meeting/page',
     method: 'get',
     params: query
   })
 }
 
 // 查询角色详细
-export function getRole(roleId) {
+export function getMeeting(roleId) {
   return request({
     url: '/system/role/' + roleId,
     method: 'get'
@@ -18,18 +18,18 @@ export function getRole(roleId) {
 }
 
 // 新增角色
-export function addRole(data) {
+export function addMeeting(data) {
   return request({
-    url: '/role',
+    url: '/meeting',
     method: 'post',
     data: data
   })
 }
 
 // 修改角色
-export function updateRole(data) {
+export function updateMeeting(data) {
   return request({
-    url: '/system/role',
+    url: `/meeting/${data.meetingId}`,
     method: 'put',
     data: data
   })
@@ -58,9 +58,9 @@ export function changeRoleStatus(roleId, status) {
 }
 
 // 删除角色
-export function delRole(roleId) {
+export function delMeeting(meetingId) {
   return request({
-    url: '/system/role/' + roleId,
+    url: '/meeting/' + meetingId,
     method: 'delete'
   })
 }

@@ -27,101 +27,64 @@ import Layout from '@/layout'
 // 公共路由
 export const constantRoutes = [
   {
-    path: '/redirect',
+    path: '/system',
     component: Layout,
-    hidden: true,
+    menuName: '权限管理',
     children: [
       {
-        path: '/redirect/:path(.*)',
-        component: (resolve) => require(['@/views/redirect'], resolve)
+        path: "/system/user",
+        component: (resolve) => require(['@/views/system/user'], resolve),
+        meta: {title: "用户管理", icon: "user", noCache: false},
+        menuName: "用户管理",
+      },
+      {
+        component: (resolve) => require(['@/views/system/role/index'], resolve),
+        meta: {title: "角色管理", icon: "peoples", noCache: false},
+        menuName: "角色管理",
+        path: "/system/role",
+      },
+      {
+        component: (resolve) => require(['@/views/system/menu/index'], resolve),
+        meta: {title: "菜单管理", icon: "tree-table", noCache: false},
+        menuName: "菜单管理",
+        path: "/system/menu",
       }
     ]
   },
   {
+    path: '/church',
+    component: Layout,
+    menuName: '教堂管理',
+    children: [
+      {
+        path: "/church/party",
+        component: (resolve) => require(['@/views/church/party'], resolve),
+        meta: {title: "聚会管理", icon: "user", noCache: false},
+        menuName: "聚会管理",
+      },
+      {
+        path: "/church/christian",
+        component: (resolve) => require(['@/views/church/christian'], resolve),
+        meta: {title: "信徒管理", icon: "peoples", noCache: false},
+        menuName: "信徒管理",
+      }
+    ]
+  },
+
+  {
     path: '/login',
+    menuName: '2222',
     component: (resolve) => require(['@/views/login'], resolve),
     hidden: true
   },
   {
-    path: '/404',
-    component: (resolve) => require(['@/views/error/404'], resolve),
+    path: '*',
+    redirect: '/church/christian',
     hidden: true
-  },
-  {
-    path: '/401',
-    component: (resolve) => require(['@/views/error/401'], resolve),
-    hidden: true
-  },
-  {
-    path: '',
-    component: Layout,
-    redirect: 'index',
-    children: [
-      {
-        path: 'index',
-        component: (resolve) => require(['@/views/index'], resolve),
-        name: '首页',
-        meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true }
-      }
-    ]
-  },
-  {
-    path: '/user',
-    component: Layout,
-    hidden: true,
-    redirect: 'noredirect',
-    children: [
-      {
-        path: 'profile',
-        component: (resolve) => require(['@/views/system/user/profile/index'], resolve),
-        name: 'Profile',
-        meta: { title: '个人中心', icon: 'user' }
-      }
-    ]
-  },
-  {
-    path: '/dict',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: 'type/data/:dictId(\\d+)',
-        component: (resolve) => require(['@/views/system/dict/data'], resolve),
-        name: 'Data',
-        meta: { title: '字典数据', icon: '' }
-      }
-    ]
-  },
-  {
-    path: '/job',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: 'log',
-        component: (resolve) => require(['@/views/monitor/job/log'], resolve),
-        name: 'JobLog',
-        meta: { title: '调度日志' }
-      }
-    ]
-  },
-  {
-    path: '/gen',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: 'edit/:tableId(\\d+)',
-        component: (resolve) => require(['@/views/tool/gen/editTable'], resolve),
-        name: 'GenEdit',
-        meta: { title: '修改生成配置' }
-      }
-    ]
   }
 ]
 
 export default new Router({
-  mode: 'history', // 去掉url中的#
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

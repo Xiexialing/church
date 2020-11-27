@@ -195,7 +195,7 @@ export default {
           return delLogininfor(infoIds);
         }).then(() => {
           this.getList();
-          this.msgSuccess("删除成功");
+          // this.msgSuccess("删除成功");
         })
     },
     /** 清空按钮操作 */
@@ -208,7 +208,7 @@ export default {
           return cleanLogininfor();
         }).then(() => {
           this.getList();
-          this.msgSuccess("清空成功");
+          // this.msgSuccess("清空成功");
         })
     },
     /** 导出按钮操作 */

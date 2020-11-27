@@ -308,13 +308,11 @@ export default {
         if (valid) {
           if (this.form.dictId != undefined) {
             updateType(this.form).then(response => {
-              this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
             addType(this.form).then(response => {
-              this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
             });
@@ -333,7 +331,6 @@ export default {
           return delType(dictIds);
         }).then(() => {
           this.getList();
-          this.msgSuccess("删除成功");
         })
     },
     /** 导出按钮操作 */
@@ -352,7 +349,7 @@ export default {
     /** 清理缓存按钮操作 */
     handleClearCache() {
       clearCache().then(response => {
-        this.msgSuccess("清理成功");
+        // this.msgSuccess("清理成功");
       });
     }
   }
